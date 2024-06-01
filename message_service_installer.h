@@ -16,7 +16,6 @@ private:
 public:
   MessageServiceInstaller(const Address &destAddress, short destPort)
       : destAddress_(destAddress), destPort_(destPort) {}
-
   // 호스트에 MessageService를 설치한다
   MessageService *install(Host *host);
 };

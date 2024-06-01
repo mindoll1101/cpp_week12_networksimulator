@@ -17,7 +17,7 @@ protected:
 public:
   Node() : id_(nextId_++) {}
 
-  virtual ~Node();
+  virtual ~Node(){};
   virtual void receive() = 0;
 
   int id() const { return id_; }
