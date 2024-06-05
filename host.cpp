@@ -21,13 +21,14 @@ void Host::receive(){
   bool existService = false;
   for(int i = 0; i < (int)services_.size(); i++){
     if(services_[i] -> getPort() == packet_ -> destPort()){
-      services_[i] -> execute();
+      services_[i] -> execute(packet_);
       existService = true;
       break;
     }
   }
   if(!existService){
     std::cout << "Host #" << id() << ": no service for packet (from: " << packet_ -> srcAddress().toString() << ", to: " << packet_ -> destAddress().toString() << ", " << packet_ -> dataString().length() << " bytes)" << std::endl;
+    delete packet_;
     // Host #0: no service for packet (from: 456, to: 123, 7 bytes)
   }
 }

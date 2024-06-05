@@ -16,10 +16,9 @@ private:
   EchoService(Host *host, short port) : Service(host, port) {}
   
 public:
-  ~EchoService();
   void init();
-  void send();
-  void execute();
+  void send(Packet *packet);
+  void execute(Packet *packet);
 };
 
 #endif

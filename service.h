@@ -19,7 +19,7 @@ protected:
 public:
   virtual ~Service(){}
   virtual void init() = 0;
-  virtual void execute() = 0;
+  virtual void execute(Packet *packet) = 0;
   short getPort(){return port_;}
 };
 

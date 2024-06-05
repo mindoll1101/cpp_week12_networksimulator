@@ -2,20 +2,16 @@
 #include "packet.h"
 #include <iostream>
 
-EchoService::~EchoService(){
-  delete packet_;
-}
-
-void EchoService::send(){
-  packet_ = new Packet(host_ -> address(), host_ -> getPacket() -> srcAddress(), port_, host_ -> getPacket() -> srcPort(), host_ -> getPacket() -> data());
+void EchoService::send(Packet *packet){
+  packet_ = new Packet(host_ -> address(), packet -> srcAddress(), port_, packet -> srcPort(), packet -> data());
   host_ -> send(packet_);
+}
+void EchoService::execute(Packet *packet){
+  std::cout << "EchoService: received \"" << host_ -> getPacket() -> dataString() << "\" from " << host_ -> getPacket() -> srcAddress().toString() << ":" << host_ -> getPacket() -> srcPort() << ", send reply with same data" << std::endl;
+  send(packet);
+  delete packet;
 }
 
 void EchoService::init(){
   packet_ = nullptr;
-}
-
-void EchoService::execute(){
-  std::cout << "EchoService: received \"" << host_ -> getPacket() -> dataString() << "\" from " << host_ -> getPacket() -> srcAddress().toString() << ":" << host_ -> getPacket() -> srcPort() << ", send reply with same data" << std::endl;
-  send();
 }

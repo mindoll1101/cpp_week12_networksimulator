@@ -24,10 +24,9 @@ private:
 
 public:
   // 메시지를 전송한다
-  ~MessageService();
   void init();
   void send(std::string message);
-  void execute();
+  void execute(Packet *packet);
 };
 
 #endif
